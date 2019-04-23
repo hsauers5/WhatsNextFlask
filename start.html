@@ -1,0 +1,85 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<style type="text/css">
+	html { 
+	  background: url(https://raw.githubusercontent.com/hsauers5/KnighthacksFrontend/master/app/assets/homepagebackground.jpeg) no-repeat center center fixed;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+	}
+	body {
+		background-repeat: no-repeat;
+	}
+	.container {
+        height: 100%;
+		font-family: Arial;
+		background-repeat: no-repeat;
+    }
+	.start-button {
+		background-color: #42b0f4;
+        color: #FFFFFF;
+		border-color: #42b0f4;
+		font-family: Arial;
+		font-size: 18px;
+        padding: 10px;
+        border-radius: 0px;
+        -moz-border-radius: 0px;
+        -webkit-border-radius: 0px;
+        margin: 0px
+	}
+	.intro {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+</style>
+
+<script>
+  var lat = 0;
+  var lon = 0;
+
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, null, options);
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  function showPosition(position) {
+    lat = position.coords.latitude;
+    lon = position.coords.longitude;
+    alert("Latitude: " + lat + 
+    " Longitude: " + lon);
+  }
+  
+  function redirect() {
+	window.location.href="categories?location=" + lat + "," + lon;
+  }
+
+</script>
+
+</head>
+
+<body onload="getLocation();">
+
+	<div id="main" class="container" style="">
+		<div class="intro">
+			<h1 style="color: #5e9ca0; text-align: center;"><span style="color: #ffffff;">WhatsNext?</span></h1>
+			<p style="text-align: center;">
+				<button class="start-button" onclick='redirect();'> Get Started </button>
+			</p>
+		</div>
+	</div>
+
+</body>
+</html>
