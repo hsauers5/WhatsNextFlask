@@ -10,7 +10,7 @@ location = ""
 
 @app.route('/', methods=['GET'])
 def home():
-  return render_template('/start_top.html')
+  return render_template('/start.html')
 
 
 @app.route('/categories', methods=['GET'])
