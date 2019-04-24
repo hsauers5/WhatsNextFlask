@@ -27,22 +27,23 @@ def prices():
 
 @app.route('/radius', methods=['GET'])
 def radius():
-  distance = request.args['distance']
+  price = request.args['price']
   return render_template('distance.html')
 
 
 @app.route('/restaurants', methods=['GET'])
 def restaurants():
-  price = request.args['price']
+  distance = request.args['distance']
   return get_restaurants(location=location, category=category, radius=distance, price=price)
 
 
 # generate restaurants list from api
-def get_restaurants(location, category, radius, price):
+@app.route('/test', methods=['GET'])
+def get_restaurants(location="32816", category="asian", radius="5", price="2"):
   # build html
   return  """
           <html><body><h1>RESTAURANTS</h1></body></html>
-          """
+          """ + str({category, price, distance, radius})
   
   
 # start listening
