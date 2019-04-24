@@ -55,10 +55,9 @@
     Http.open("GET", url);
     Http.send();
     Http.onreadystatechange=(e)=>{
-      // console.log(Http.responseText)
+      setTimeout(function(){
+        console.log(Http.responseText); window.location.href="prices.html";}, 500);
     }
-    // next page
-	  window.location.href="prices.html";
   }
 </script>
 
