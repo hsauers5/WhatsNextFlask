@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, jsonify
+from flask import Flask, render_template, request, session, jsonify, redirect, url_for
 import requests
 import json
 import time
@@ -17,19 +17,19 @@ def home():
 @app.route('/categories', methods=['GET'])
 def categories():
   session['location'] = request.args['location'] 
-  return render_template('/categories.html')
+  return redirect('/categories.html', code=200)
 
 
 @app.route('/prices', methods=['GET'])
 def prices():
   session['category'] = request.args['category']
-  return render_template('/prices.html')
+  return redirect('/prices.html', code=200)
 
 
 @app.route('/radius', methods=['GET'])
 def radius():
   session['price'] = request.args['price']
-  return render_template('distance.html')
+  return redirect('/distance.html', code=200)
 
 
 @app.route('/restaurants', methods=['GET'])
