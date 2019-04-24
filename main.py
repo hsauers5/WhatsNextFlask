@@ -44,16 +44,20 @@ def get_restaurants(location="32816", category="asian", radius="5", price="2"):
   # build html
   
   # create request url
-  api_url = "http://whatsnext.hsauers.net/find?"
+  api_url = "http://ec2-18-191-161-179.us-east-2.compute.amazonaws.com/find?"
   api_url += "location=" + location + "&category=" + category + "&radius=" + radius + "&money=" + price
 
   print(api_url)
+
+  resp = requests.get(api_url).content
 
   # ensures slow responses don't break the app
   count = 0
   while count < 10:
     try:
-      resp = requests.get(api_url).content
+      if "None found" in resp:
+        return render_template('none.html')
+
       restaurants = json.loads(resp)
       break
     except:
@@ -87,4 +91,4 @@ def get_restaurants(location="32816", category="asian", radius="5", price="2"):
   
 # start listening
 if __name__ == "__main__":
-  app.run(debug=True, port='8080', host='0.0.0.0')
+  app.run(debug=False, port='8080', host='0.0.0.0')
