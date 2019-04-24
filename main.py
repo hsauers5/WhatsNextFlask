@@ -17,6 +17,7 @@ def home():
 @app.route('/categories', methods=['GET'])
 def categories():
   session['location'] = request.args['location'] 
+  print(session['location'])
   return redirect('/categories.html', code=200)
 
 
