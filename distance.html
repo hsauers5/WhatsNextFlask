@@ -44,6 +44,13 @@
 		font-style: oblique;
 	}
 </style>
+
+<script>
+  function nextPage(choice) {
+    window.location.href="restaurants?distance=" + choice;
+  }
+</script>
+
 </head>
 
 <body>
@@ -55,18 +62,18 @@
 		<table>
 			<tr>
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('american');" class="categoryimg">
+			<a href="javascript: nextPage('5');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/LogoMakr_1SHP8v.png" />
 			</a>
 			</td>
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('asian');" class="categoryimg">
+			<a href="javascript: nextPage('10');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/LogoMakr_30rx2U.png" />
 			</a>
 			</td>
 			
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('american');" class="categoryimg">
+			<a href="javascript: nextPage('15');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/LogoMakr_5pk504.png" />
 			</a>
 			</td>

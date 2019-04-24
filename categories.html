@@ -30,7 +30,7 @@
         -webkit-border-radius: 0px;
         margin: 0px
 	}
-	.intro {
+	.table {
 		position: absolute;
 		top: 45%;
 		left: 50%;
@@ -40,7 +40,19 @@
 		width: 200px;
 		height: 200px;
 	}
+	
+	.question {
+		font-style: oblique;
+	}
 </style>
+
+
+<script>
+  function nextPage(choice) {
+    window.location.href="prices?category=" + choice;
+  }
+</script>
+
 </head>
 
 <body>
@@ -48,15 +60,16 @@
 	<div id="main" class="container" style="">
 	<div class="table">
 	<center>
+		<h1 class="question" style="color: #5e9ca0; text-align: center; "><span style="color: #ffffff;">what are you feeling?</span></h1>
 		<table>
 			<tr>
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('american');" class="categoryimg">
+			<a href="javascript: nextPage('american');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/KnighthacksFrontend/master/app/assets/American.png" />
 			</a>
 			</td>
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('asian');" class="categoryimg">
+			<a href="javascript: nextPage('mexican');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/KnighthacksFrontend/master/app/assets/mexican.png" />
 			</a>
 			</td>
@@ -64,12 +77,12 @@
 			
 						<tr>
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('american');" class="categoryimg">
+			<a href="javascript: nextPage('asian');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/KnighthacksFrontend/master/app/assets/Asian.png" />
 			</a>
 			</td>
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('asian');" class="categoryimg">
+			<a href="javascript: nextPage('seafood');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/KnighthacksFrontend/master/app/assets/Seafood.png" />
 			</a>
 			</td>
@@ -77,12 +90,12 @@
 			
 						<tr>
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('american');" class="categoryimg">
+			<a href="javascript: nextPage('vegan');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/KnighthacksFrontend/master/app/assets/Vegan.png" />
 			</a>
 			</td>
 			<td style="text-align:center; vertical-align:middle">
-			<a href="javascript: alert('asian');" class="categoryimg">
+			<a href="javascript: nextPage('fancy');" class="categoryimg">
 				<img class="categoryimg" src="https://raw.githubusercontent.com/hsauers5/KnighthacksFrontend/master/app/assets/UpScale.png" />
 			</a>
 			</td>
