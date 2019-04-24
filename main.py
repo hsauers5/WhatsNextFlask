@@ -1,5 +1,9 @@
-from flask import Flask, render_template, request, session
-# just serve all the static files under root
+from flask import Flask, render_template, request, session, jsonify
+import requests
+import json
+import time
+ 
+
 app = Flask(__name__, static_folder='.', static_url_path='', template_folder='')
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -38,9 +42,46 @@ def restaurants():
 @app.route('/test', methods=['GET'])
 def get_restaurants(location="32816", category="asian", radius="5", price="2"):
   # build html
-  return  """
-          <html><body><h1>RESTAURANTS</h1></body></html>
-          """ + str({category, price, location, radius})
+  
+  # create request url
+  api_url = "http://whatsnext.hsauers.net/find?"
+  api_url += "location=" + location + "&category=" + category + "&radius=" + radius + "&money=" + price
+
+  # print(api_url)
+
+  # ensures slow responses don't break the app
+  count = 0
+  while count < 10:
+    try:
+      resp = requests.get(api_url).content
+      restaurants = json.loads(resp)
+      break
+    except:
+      time.sleep(0.25)
+  if count >= 10:
+    return 'javascript: alert("No restaurants found for your search... Please try again.")' + 'window.location.href="/";'
+
+  r = restaurants[0]
+
+  restaurants_html = ""
+
+  for r in restaurants:
+    restaurants_html += "<p><a href='https://maps.google.com/maps?q=" + str(r['address']) + "'><img src='" + r['image'] + "'/> </a> <p> <h1>" + str(r['name']) + "</h1><p> <h3> " + r['review'] + " </h3>"
+
+  # restaurants_html = "<h1>" + str(r['name']) + "</h1>"
+  # {"address":"504 N Alafaya Trl Ste 119","distance":"3.4 mi.","image":"https://s3-media2.fl.yelpcdn.com/bphoto/irQ-lMGggMcjqVymw8v1bA/o.jpg","name":"Top Top Hot Pot","phone":"(407) 901-8888","price":"$$","rating":4.0,"review":"\"Double double toil and TROUBLE, ate so much my belt just BUCKLED!  lol\n\nOne of my many birthday dinners over the weekend.\""}
+
+
+  # reads html templates
+  top_html = ""
+  with open('end_top.html', 'r') as content_file:
+    top_html = content_file.read()
+
+  bottom_html = ""
+  with open('end_bottom.html', 'r') as content_file:
+    bottom_html = content_file.read()
+
+  return top_html + restaurants_html + bottom_html
   
   
 # start listening
