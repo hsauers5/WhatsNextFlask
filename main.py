@@ -54,11 +54,8 @@ def get_restaurants(location="32816", category="asian", radius="5", price="2"):
 
   # ensures slow responses don't break the app
   count = 0
-  while count < 10:
+  while count < 20:
     try:
-      if "None found" in resp:
-        return render_template('none.html')
-
       restaurants = json.loads(resp)
       break
     except:
