@@ -52,11 +52,10 @@
     const url="radius?price=" + choice;
     Http.open("GET", url);
     Http.send();
-    Http.onreadystatechange=(e)=>{
-      // console.log(Http.responseText)
+Http.onreadystatechange=(e)=>{
+      setTimeout(function(){
+        console.log(Http.responseText); window.location.href="distance.html";}, 500);
     }
-    // next page
-	  window.location.href="distance.html";
   }
 </script>
 
