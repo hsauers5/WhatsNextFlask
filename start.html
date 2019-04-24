@@ -54,9 +54,6 @@
     } else { 
       x.innerHTML = "Geolocation is not supported by this browser.";
     }
-    while (lat == 0) {
-      getLocation();
-    }
   }
 
   function showPosition(position) {
@@ -74,7 +71,10 @@
       setTimeout(function(){
         console.log(Http.responseText); window.location.href="categories.html";}, 500);
     }
-    // next page
+   
+    while (lat == 0) {
+      getLocation();
+    }
 	  
   }
 
