@@ -47,7 +47,7 @@ def get_restaurants(location="32816", category="asian", radius="5", price="2"):
   api_url = "http://whatsnext.hsauers.net/find?"
   api_url += "location=" + location + "&category=" + category + "&radius=" + radius + "&money=" + price
 
-  # print(api_url)
+  print(api_url)
 
   # ensures slow responses don't break the app
   count = 0
@@ -58,8 +58,9 @@ def get_restaurants(location="32816", category="asian", radius="5", price="2"):
       break
     except:
       time.sleep(0.25)
+      count += 1
   if count >= 10:
-    return 'javascript: alert("No restaurants found for your search... Please try again.")' + 'window.location.href="/";'
+    return render_template('none.html')
 
   r = restaurants[0]
 
