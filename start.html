@@ -68,10 +68,11 @@
     Http.open("GET", url);
     Http.send();
     Http.onreadystatechange=(e)=>{
-      // console.log(Http.responseText)
+      setTimeout(function(){
+        console.log(Http.responseText); window.location.href="categories.html";}, 500);
     }
     // next page
-	  window.location.href="categories.html";
+	  
   }
 
 </script>
