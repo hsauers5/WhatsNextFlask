@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, jsonify, redirect, u
 import requests
 import json
 import time
- 
+
 
 app = Flask(__name__, static_folder='.', static_url_path='', template_folder='')
 app.secret_key = 'super secret key'
@@ -92,4 +92,4 @@ def get_restaurants(location="32816", category="asian", radius="5", price="2"):
   
 # start listening
 if __name__ == "__main__":
-  app.run(debug=False, port='8080', host='0.0.0.0')
+  app.run(debug=False, port='5000', host='0.0.0.0')
