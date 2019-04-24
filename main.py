@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 # just serve all the static files under root
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.', static_url_path='', template_folder='')
 
 # hold user's data
 category = ""
@@ -27,17 +27,18 @@ def prices():
 
 @app.route('/radius', methods=['GET'])
 def radius():
-  
+  distance = request.args['distance']
+  return render_template('distance.html')
 
 
 @app.route('/restaurants', methods=['GET'])
 def restaurants():
   price = request.args['price']
-  return get_restaurants(category=category, price=price, location=location)
+  return get_restaurants(location=location, category=category, radius=distance, price=price)
 
 
 # generate restaurants list from api
-def get_restaurants(category, price, location):
+def get_restaurants(location, category, radius, price):
   # build html
   return  """
           <html><body><h1>RESTAURANTS</h1></body></html>
