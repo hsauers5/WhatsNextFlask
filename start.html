@@ -62,7 +62,15 @@
   }
   
   function redirect() {
-	window.location.href="categories?location=" + lat + "," + lon;
+    const Http = new XMLHttpRequest();
+    const url="categories?location=" + lat + "," + lon;
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+      // console.log(Http.responseText)
+    }
+    // next page
+	  window.location.href="categories.html";
   }
 
 </script>
@@ -73,7 +81,7 @@
 
 	<div id="main" class="container" style="">
 		<div class="intro">
-			<h1 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">WhatsNext?</span></h1>
+			<h2 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">take the guesswork out of going out.</span></h2>
 			<p style="text-align: center;">
 				<button class="start-button" onclick='redirect();'> Get Started </button>
 			</p>

@@ -47,7 +47,15 @@
 
 <script>
   function nextPage(choice) {
-    window.location.href="radius?price=" + choice;
+    const Http = new XMLHttpRequest();
+    const url="radius?price=" + choice;
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+      // console.log(Http.responseText)
+    }
+    // next page
+	  window.location.href="distance.html";
   }
 </script>
 
@@ -88,6 +96,8 @@
 		</table>
 		<center>
 	</div>
+		
 	</div>
+
 </body>
 </html>

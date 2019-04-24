@@ -49,7 +49,15 @@
 
 <script>
   function nextPage(choice) {
-    window.location.href="prices?category=" + choice;
+    const Http = new XMLHttpRequest();
+    const url="prices?category=" + choice;
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+      // console.log(Http.responseText)
+    }
+    // next page
+	  window.location.href="prices.html";
   }
 </script>
 
