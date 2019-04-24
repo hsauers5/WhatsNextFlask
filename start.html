@@ -54,6 +54,9 @@
     } else { 
       x.innerHTML = "Geolocation is not supported by this browser.";
     }
+    while (lat == 0) {
+      getLocation();
+    }
   }
 
   function showPosition(position) {
