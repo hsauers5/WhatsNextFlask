@@ -60,6 +60,7 @@
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     // alert("Latitude: " + lat + " Longitude: " + lon);
+    redirect();
   }
   
   function redirect() {
@@ -70,10 +71,6 @@
     Http.onreadystatechange=(e)=>{
       setTimeout(function(){
         console.log(Http.responseText); window.location.href="categories.html";}, 500);
-    }
-   
-    while (lat == 0) {
-      getLocation();
     }
 	  
   }
@@ -88,7 +85,7 @@
 		<div class="intro">
 			<h2 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">take the guesswork out of going out.</span></h2>
 			<p style="text-align: center;">
-				<button class="start-button" onclick='redirect();'> Get Started </button>
+				<button class="start-button" onclick='getLocation();'> Get Started </button>
 			</p>
 		</div>
 	</div>
