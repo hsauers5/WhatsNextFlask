@@ -61,7 +61,7 @@ def get_restaurants(location="32816", category="asian", radius="5", price="2"):
     except:
       time.sleep(0.25)
       count += 1
-  if count >= 10:
+  if count >= 20:
     return render_template('none.html')
 
   r = restaurants[0]
