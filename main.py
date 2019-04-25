@@ -35,8 +35,11 @@ def radius():
 
 @app.route('/restaurants', methods=['GET'])
 def restaurants():
-  session['distance'] = request.args['distance']
-  return get_restaurants(location=session['location'], category=session['category'], radius=session['distance'], price=session['price'])
+  try: 
+    session['distance'] = request.args['distance']
+    return get_restaurants(location=session['location'], category=session['category'], radius=session['distance'], price=session['price'])
+  except:
+    return "<script>window.location.href='start.html';</script>"
 
 
 # generate restaurants list from api
