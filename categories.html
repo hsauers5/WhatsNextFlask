@@ -50,6 +50,7 @@
 
 <script>
   function nextPage(choice) {
+    showLoading();
     const Http = new XMLHttpRequest();
     const url="prices?category=" + choice;
     Http.open("GET", url);
@@ -113,6 +114,38 @@
 	</div>
 		
 	</div>
+
+
+<!-- Page Load -->
+<script>
+
+function show(id, value) {
+    document.getElementById(id).style.display = value ? 'block' : 'none';
+}
+
+function showLoading() {
+    // alert(loading);
+    // show('page', true);
+    show('loading', true);
+};
+
+</script>
+<style>
+#loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    background-image: url("https://cdn.dribbble.com/users/636337/screenshots/4505682/cube-change-loading.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
+<div id="loading"></div>
 
 </body>
 </html>
