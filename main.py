@@ -44,12 +44,15 @@ def restaurants():
 
 # generate restaurants list from api
 @app.route('/test', methods=['GET'])
-def get_restaurants(location="32816", category="asian", radius="5", price="2"):
+def get_restaurants(location="32816", category="asian", radius="15", price="4", isOpen=False):
   # build html
   
   # create request url
   api_url = "http://ec2-18-191-161-179.us-east-2.compute.amazonaws.com/find?"
   api_url += "location=" + location + "&category=" + category + "&radius=" + radius + "&money=" + price
+
+  if not isOpen:
+    api_url += "&open=false"
 
   print(api_url)
 
@@ -72,7 +75,7 @@ def get_restaurants(location="32816", category="asian", radius="5", price="2"):
   restaurants_html = ""
 
   for r in restaurants:
-    restaurants_html += "<p><a href='https://maps.google.com/maps?q=" + str(r['address']) + "'><img src='" + r['image'] + "'/> </a> <p> <h1>" + str(r['name']) + "</h1><p> <h3> " + r['review'] + " </h3>"
+    restaurants_html += '<p><a href="https://maps.google.com/maps?q=' + r['name'] + " - " + r['address'] + '"><img src="' + r['image'] + '"/> </a> <p> <h1>' + r['name'] + " - " + r['distance'] + "</h1><p> <h3> " + r['review'] + " </h3>"
 
   # restaurants_html = "<h1>" + str(r['name']) + "</h1>"
   # {"address":"504 N Alafaya Trl Ste 119","distance":"3.4 mi.","image":"https://s3-media2.fl.yelpcdn.com/bphoto/irQ-lMGggMcjqVymw8v1bA/o.jpg","name":"Top Top Hot Pot","phone":"(407) 901-8888","price":"$$","rating":4.0,"review":"\"Double double toil and TROUBLE, ate so much my belt just BUCKLED!  lol\n\nOne of my many birthday dinners over the weekend.\""}
