@@ -44,15 +44,12 @@ def restaurants():
 
 # generate restaurants list from api
 @app.route('/test', methods=['GET'])
-def get_restaurants(location="32816", category="asian", radius="15", price="4", isOpen=False):
+def get_restaurants(location="32816", category="asian", radius="15", price="4"):
   # build html
   
   # create request url
   api_url = "http://ec2-18-191-161-179.us-east-2.compute.amazonaws.com/find?"
   api_url += "location=" + location + "&category=" + category + "&radius=" + radius + "&money=" + price
-
-  if not isOpen:
-    api_url += "&open=false"
 
   print(api_url)
 
