@@ -72,8 +72,9 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
   restaurants_html = ""
 
   for r in restaurants:
+    restaurants_html += '<div class="restaurant" style="padding-bottom: 50px; padding-top: 50px;">'
     restaurants_html += '<p><a href="https://maps.google.com/maps?q=' + r['name'] + " - " + r['address'] + '"><img src="' + r['image'] + '"/> </a> <p> <h1>' + r['name'] + " - " + r['distance'] + "</h1><p> <h3> " + r['review'] + " </h3>"
-
+    restaurants_html += "</div>"
   # restaurants_html = "<h1>" + str(r['name']) + "</h1>"
   # {"address":"504 N Alafaya Trl Ste 119","distance":"3.4 mi.","image":"https://s3-media2.fl.yelpcdn.com/bphoto/irQ-lMGggMcjqVymw8v1bA/o.jpg","name":"Top Top Hot Pot","phone":"(407) 901-8888","price":"$$","rating":4.0,"review":"\"Double double toil and TROUBLE, ate so much my belt just BUCKLED!  lol\n\nOne of my many birthday dinners over the weekend.\""}
 
