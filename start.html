@@ -53,6 +53,7 @@
   };
 
   function getLocation() {
+    showLoading();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, null, options);
     } else { 
@@ -68,7 +69,6 @@
   }
   
   function redirect() {
-    showLoading();
     const Http = new XMLHttpRequest();
     const url="categories?location=" + lat + "," + lon;
     Http.open("GET", url);
