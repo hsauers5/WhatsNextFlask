@@ -1,0 +1,74 @@
+<html>
+<head>
+
+<style>
+	html { 
+		  background: url(https://raw.githubusercontent.com/hsauers5/KnighthacksFrontend/master/app/assets/moneyBackgound.png) no-repeat center center fixed;
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover;
+		}
+
+	.modal-dialog {
+	    position: fixed;
+		bottom: 0;
+		background-color: #282828;
+		min-height: 97%; 
+		min-width: 100%;
+		opacity: 0.95;
+		padding-bottom: 50px;
+	}
+	.modal-content {
+		
+	    position: fixed;
+		top: 300px;
+		left: 20%;
+	}
+	.button-back {
+		background-color: #42b0f4;
+        color: #FFFFFF;
+		border-color: #42b0f4;
+		font-family: Arial;
+		font-size: 24px;
+        padding: 10px;
+        border-radius: 0px;
+        -moz-border-radius: 0px;
+        -webkit-border-radius: 0px;
+        margin: 0px;
+		min-height: 75px;		
+		min-width: 150px;
+	}
+</style>
+
+</head>
+
+<body>
+
+<!-- Modal -->
+<div class="modal-fade" id="install-modal" tabindex="-1" role="dialog" aria-labelledby="install-modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		
+		<center>
+		<h1 class="modal-title" id="install-modalLabel" style="color: #ffffff; font-size: 64; font-family: Arial;">Install WhatsNext</h1>
+		</center>
+      </div>
+	  <center>
+      <div class="modal-body">
+        <img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/images/icons/icon-384x384.png" />
+<p>
+<img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/add.png" height=130px, width=600px />
+      </div>
+      <div class="modal-footer">
+	  <button class="button-back" onclick="javascript: document.location.href='pwa.html';"> No Thanks </button>
+      </div>
+	  </center>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
