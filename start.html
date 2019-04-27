@@ -124,7 +124,17 @@ function showLoading() {
     // show('page', true);
     show('loading', true);
 };
+	
+// if iphone, redirect to instructions
+if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+  document.location.href="modal.html";
+}
 
+// if android, redirect to instructions
+if (navigator.userAgent.match(/Android/i)) {
+  document.location.href="modal.html";
+}
+	
 </script>
 <style>
 #loading {
