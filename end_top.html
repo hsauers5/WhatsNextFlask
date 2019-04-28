@@ -54,28 +54,12 @@
 </style>
 
 <script>
-  function install() {
 
-    thisCookie = document.cookie;
-
-    if (! thisCookie.includes("noInstall")) {
-      // if iphone, redirect to instructions
-      if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-        document.location.href="iosmodal.html";
-      }
-
-      // if android, redirect to instructions
-      if (navigator.userAgent.match(/Android/i)) {
-        document.location.href="androidmodal.html";
-      }
-    }
-
-  }
 </script>
 
 </head>
 
-<body onload="install()">
+<body onload="">
 	<div id="main" class="container" style="">
 	<center>
     <div class="top-box">
