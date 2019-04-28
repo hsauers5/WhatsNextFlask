@@ -41,6 +41,18 @@
 	}
 </style>
 
+<script>
+
+// user opted out of installation
+function noThanks() {
+  // set cookie to asked once - must opt out twice.
+
+  // redirect to start.html
+  document.location.href='.';
+}
+
+</script>
+
 </head>
 
 <body>
@@ -63,7 +75,7 @@
 <img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/add.png" height=130px, width=600px />
       </div>
       <div class="modal-footer">
-	  <button class="button-back" onclick="javascript: document.location.href='pwa.html';"> No Thanks </button>
+	  <button class="button-back" onclick="noThanks()"> No Thanks </button>
       </div>
 	  </center>
     </div>
