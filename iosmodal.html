@@ -27,15 +27,15 @@
 	}
 	.button-back {
 		background-color: #42b0f4;
-        color: #FFFFFF;
+    color: #FFFFFF;
 		border-color: #42b0f4;
 		font-family: Arial;
-		font-size: 24px;
-        padding: 10px;
-        border-radius: 0px;
-        -moz-border-radius: 0px;
-        -webkit-border-radius: 0px;
-        margin: 0px;
+		font-size: 48px;
+    padding: 20px;
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    margin: 0px;
 		min-height: 75px;		
 		min-width: 150px;
 	}
@@ -45,11 +45,48 @@
 
 // user opted out of installation
 function noThanks() {
-  // set cookie to asked once - must opt out twice.
+
+  showLoading();
+
+  // alert(document.cookie);
+  
+  // read cookie
+  cookiearray = document.cookie.split(';');
+  numNoInstalls = 1;
+
+  var cookieDict = {};
+
+  for(var i=0; i<cookiearray.length; i++) {
+    key = cookiearray[i].split('=')[0];
+    value = cookiearray[i].split('=')[1];
+    cookieDict[key] = value;
+  }
+
+  if (cookieDict['noInstall'] == null) {
+    cookieDict['noInstall'] = numNoInstalls;
+  }
+
+  // set cookie to asked once - should opt out twice.
+  document.cookie = "noInstall=" + (parseInt(cookieDict['noInstall'])+1) + ";";
+  
+  /* Max Date: 2038-01-19 00:00:00 */
+  document.cookie = "expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + ";";
+
+  // alert(document.cookie);
 
   // redirect to start.html
-  document.location.href='.';
+  document.location.href='/restaurants';
 }
+
+function show(id, value) {
+  document.getElementById(id).style.display = value ? 'block' : 'none';
+}
+
+function showLoading() {
+    // alert(loading);
+    // show('page', true);
+    show('loading', true);
+};
 
 </script>
 
@@ -72,7 +109,7 @@ function noThanks() {
       <div class="modal-body">
         <img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/images/icons/icon-384x384.png" />
 <p>
-<img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/add.png" height=130px, width=600px />
+<img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/add.png" height=100px, width=600px />
       </div>
       <div class="modal-footer">
 	  <button class="button-back" onclick="noThanks()"> No Thanks </button>
@@ -81,6 +118,23 @@ function noThanks() {
     </div>
   </div>
 </div>
+
+<style>
+#loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    background-image: url("https://cdn.dribbble.com/users/636337/screenshots/4505682/cube-change-loading.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
+<div id="loading"></div>
 
 </body>
 </html>
