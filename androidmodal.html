@@ -1,5 +1,19 @@
 <html>
 <head>
+	
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+  .then(function(response) {
+    
+    // Service worker registration done
+    console.log('Registration Successful', response);
+  }, function(error) {
+    // Service worker registration failed
+    console.log('Registration Failed', error);
+  })
+}
+var lE=document.createElement("link");
+lE.rel="manifest",lE.href="app.json",document.head.insertBefore(lE, document.head.firstChild);
 
 <style>
 	html { 
