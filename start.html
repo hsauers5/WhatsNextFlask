@@ -134,7 +134,7 @@ function onSignIn(googleUser) {
 }
 function skip() {
   // hide auth, show start button
-  getLocation();
+  // getLocation();
   show('auth-table', false);
   show('start-btn', true);
 }
@@ -171,7 +171,7 @@ function skip() {
           </td>
           <td>
             <center>
-              <button class="skip-button" onclick='skip();'> Just Show Me </button>
+              <button class="skip-button" onclick='getLocation();'> Just Show Me </button>
             </center>
           </td>
         </tr>
