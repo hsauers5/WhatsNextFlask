@@ -132,6 +132,11 @@ def oauth():
   except:
     return "Bad request."
 
+
+@app.route('/history.csv', methods=['GET'])
+def show_history():
+  return "404 not found"
+
   
 # start listening
 if __name__ == "__main__":
