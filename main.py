@@ -87,6 +87,13 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
     temp_html = temp_html.replace("NAME_DISTANCE", str(r['name'] + " - " + r['distance']))
     temp_html = temp_html.replace("REVIEW", str(r['review']))
 
+    # @TODO: Return Business ID from Yelp API
+    temp_html = temp_html.replace("REST_NAME", r['name'])
+    temp_html = temp_html.replace("LOCATION", r['address'])
+
+    temp_html = temp_html.replace("PHONE_NUMBER", r['phone'])
+    # temp_html = temp_html.replace("BIZ_ID", r['id'])
+
     # append to all
     restaurants_html += temp_html
 
