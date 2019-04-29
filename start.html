@@ -42,18 +42,6 @@
     -webkit-border-radius: 0px;
     margin: 0px
 	}
-.skip-button {
-		background-color: #42b0f4;
-    color: #FFFFFF;
-		border-color: #42b0f4;
-		font-family: Arial;
-		font-size: 14px;
-    padding: 8px;
-    border-radius: 0px;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    margin: 0px
-	}
 	.intro {
 		position: absolute;
 		top: 45%;
@@ -63,13 +51,16 @@
 </style>
 
 <script>
+
   var lat = 0;
   var lon = 0;
+
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0
   };
+
   function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, null, options);
@@ -77,6 +68,7 @@
       x.innerHTML = "Geolocation is not supported by this browser.";
     }
   }
+
   function showPosition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
@@ -95,6 +87,7 @@
         console.log(Http.responseText); window.location.href="categories.html";}, 500);
     }
   }
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
   .then(function(response) {
@@ -108,42 +101,8 @@ if ('serviceWorker' in navigator) {
 }
 var lE=document.createElement("link");
 lE.rel="manifest",lE.href="app.json",document.head.insertBefore(lE, document.head.firstChild);
-</script>
 
-<script>
-/* OAuth Script */
-function onSignIn(googleUser) {
-  // hide auth, show start button
-  show('auth-table', false);
-  show('start-btn', true);
-  var profile = googleUser.getBasicProfile();
-  // id = profile.getId(); // Do not send to your backend! Use an ID token instead.
-  idtoken = googleUser.getAuthResponse().id_token;
-  name = profile.getName();
-  // console.log('Image URL: ' + profile.getImageUrl();
-  email = profile.getEmail(); // This is null if the 'email' scope is not present.
-  console.log("Name: " + name + "\nEmail: " + email);
-  // send to server
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'oauth', true);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send('idtoken=' + idtoken + "&email=" + email + "&name=" + name);
-  xhr.onload = function() {
-    console.log('Response: ' + xhr.responseText);
-  };
-}
-function skip() {
-  // hide auth, show start button
-  show('auth-table', false);
-  show('start-btn', true);
-}
 </script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<!--
-  Prod ID: 374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com
-  -->
-<meta name="google-signin-client_id" content="374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com">
 
 </head>
 
@@ -152,47 +111,32 @@ function skip() {
 	<div id="main" class="container" style="">
 		<div class="intro" style="width: 340px">
 			<h1 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">Take The Guesswork Out Of Going Out.</span></h1>
-
-      <!-- "Top Acclaimed" -->
       <h3 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">we help food lovers like you find the best open restaurants in your area</span></h3>
-
-			<p style="text-align: center; display: none;" id="start-btn">
+			<p style="text-align: center;">
 				<button class="start-button" onclick='getLocation();'> Get Started </button>
 			</p>
-
-      <center>
-      <table id="auth-table">
-        <tr>
-          <td>
-            <center>
-              <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            </center>
-          </td>
-          <td>
-            <center>
-              <button class="skip-button" onclick='skip();'> Just Show Me </button>
-            </center>
-          </td>
-        </tr>
-      </table>
-      </center>
-
 		</div>
 	</div>
 
 
   <!-- Page Load -->
 <script>
+
 function show(id, value) {
     document.getElementById(id).style.display = value ? 'block' : 'none';
 }
+
 function showLoading() {
     // alert(loading);
     // show('page', true);
     show('loading', true);
 };
+
+
 /*
+
 */
+
 </script>
 <style>
 #loading {
@@ -272,21 +216,27 @@ function showLoading() {
 
 <script>
   function install() {
+
     thisCookie = document.cookie;
+
     if (! (thisCookie.includes("noInstall") && thisCookie.includes("noInstall1"))) {
       // if iphone, redirect to instructions
       if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
         show('ios-modal', true);
       }
+
       // if android, redirect to instructions
       if (navigator.userAgent.match(/Android/i)) {
         show('android-modal', true);
       }
     }
+
   }
+
   function noThanks() {
     // showLoading();
-    // alert(document.cookie);
+    alert(document.cookie);
+
     /*
     if (cookieDict['noInstall'] == null) {
       cookieDict['noInstall'] = numNoInstalls;
@@ -324,9 +274,11 @@ function showLoading() {
         <img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/images/icons/icon-144x144.png" />
 <p>
 <!-- <img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/add.png" height=130px, width=600px /> -->
+
   <h3 class="modal-instructions" style="color: #ffffff; font-size: 18; font-family: Arial;font-style: oblique;"> 
     Tap "Options" in your browser,<p> then tap "Add to home screen"
   </h3>
+
       </div>
       <div class="modal-footer">
 	  <button class="button-back" onclick="noThanks()"> No Thanks </button>
@@ -336,6 +288,7 @@ function showLoading() {
   </div>
 </div>
 </div>
+
 <div id="ios-modal">
   <div class="modal-fade" id="install-modal" tabindex="-1" role="dialog" aria-labelledby="install-modalLabel" aria-hidden="true">
   <div class="modal-dialog">
