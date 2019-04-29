@@ -84,10 +84,11 @@
   function showPosition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
+    alert("Latitude: " + lat + " Longitude: " + lon);
     if (lat == 0 && lon == 0) {
 	alert("Please enable location and try again.");
     } else {
-    // alert("Latitude: " + lat + " Longitude: " + lon);
+        // alert("Latitude: " + lat + " Longitude: " + lon);
     	redirect();
     }
   }
