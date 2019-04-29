@@ -39,7 +39,7 @@ def restaurants():
     try: 
       session['distance'] = request.args['distance']
     except: 
-      assert 'distance' in session, print("Distance not set")
+      assert 'distance' in session
 
     return get_restaurants(location=session['location'], category=session['category'], radius=session['distance'], price=session['price'])
   except:
@@ -76,13 +76,19 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
   restaurants_html = ""
 
   for r in restaurants:
-    restaurants_html += '<div class="restaurant" style="padding-bottom: 50px; padding-top: 50px;">'
-    restaurants_html += '<p><a href="https://maps.google.com/maps?q=' + r['name'] + " - " + r['address'] + '"><img src="' + r['image'] + '"/> </a> <p> <h1>' + r['name'] + " - " + r['distance'] + "</h1><p> <h3> " + r['review'] + " </h3>"
-    restaurants_html += "</div>"
+    # generate restaurant html from template
+    temp_html = ""
+    with open('restaurant_template.html', 'r') as content_file:
+      temp_html = content_file.read()
+    
+    # replace strings with data
+    temp_html = temp_html.replace("NAME_ADDRESS", str(r['name'] + " - " + r['address']))
+    temp_html = temp_html.replace("IMG_URL", str(r['image']))
+    temp_html = temp_html.replace("NAME_DISTANCE", str(r['name'] + " - " + r['distance']))
+    temp_html = temp_html.replace("REVIEW", str(r['review']))
 
-  # restaurants_html = "<h1>" + str(r['name']) + "</h1>"
-  # {"address":"504 N Alafaya Trl Ste 119","distance":"3.4 mi.","image":"https://s3-media2.fl.yelpcdn.com/bphoto/irQ-lMGggMcjqVymw8v1bA/o.jpg","name":"Top Top Hot Pot","phone":"(407) 901-8888","price":"$$","rating":4.0,"review":"\"Double double toil and TROUBLE, ate so much my belt just BUCKLED!  lol\n\nOne of my many birthday dinners over the weekend.\""}
-
+    # append to all
+    restaurants_html += temp_html
 
   # reads html templates
   top_html = ""
