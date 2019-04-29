@@ -42,6 +42,18 @@
     -webkit-border-radius: 0px;
     margin: 0px
 	}
+.skip-button {
+		background-color: #42b0f4;
+    color: #FFFFFF;
+		border-color: #42b0f4;
+		font-family: Arial;
+		font-size: 14px;
+    padding: 8px;
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    margin: 0px
+	}
 	.intro {
 		position: absolute;
 		top: 45%;
@@ -104,6 +116,45 @@ lE.rel="manifest",lE.href="app.json",document.head.insertBefore(lE, document.hea
 
 </script>
 
+<script>
+/* OAuth Script */
+function onSignIn(googleUser) {
+  // hide auth, show start button
+  show('auth-table', false);
+  show('start-btn', true);
+
+  var profile = googleUser.getBasicProfile();
+  // id = profile.getId(); // Do not send to your backend! Use an ID token instead.
+  idtoken = googleUser.getAuthResponse().id_token;
+  name = profile.getName();
+  // console.log('Image URL: ' + profile.getImageUrl();
+  email = profile.getEmail(); // This is null if the 'email' scope is not present.
+
+  console.log("Name: " + name + "\nEmail: " + email);
+
+  // send to server
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'oauth', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send('idtoken=' + idtoken + "&email=" + email + "&name=" + name);
+  xhr.onload = function() {
+    console.log('Response: ' + xhr.responseText);
+  };
+}
+
+function skip() {
+  // hide auth, show start button
+  show('auth-table', false);
+  show('start-btn', true);
+}
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<!--
+  Prod ID: 374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com
+  -->
+<meta name="google-signin-client_id" content="374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com">
+
 </head>
 
 <body  onload="install()">
@@ -111,10 +162,31 @@ lE.rel="manifest",lE.href="app.json",document.head.insertBefore(lE, document.hea
 	<div id="main" class="container" style="">
 		<div class="intro" style="width: 340px">
 			<h1 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">Take The Guesswork Out Of Going Out.</span></h1>
+
+      <!-- "Top Acclaimed" -->
       <h3 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">we help food lovers like you find the best open restaurants in your area</span></h3>
-			<p style="text-align: center;">
+
+			<p style="text-align: center; display: none;" id="start-btn">
 				<button class="start-button" onclick='getLocation();'> Get Started </button>
 			</p>
+
+      <center>
+      <table id="auth-table">
+        <tr>
+          <td>
+            <center>
+              <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </center>
+          </td>
+          <td>
+            <center>
+              <button class="skip-button" onclick='skip();'> Just Show Me </button>
+            </center>
+          </td>
+        </tr>
+      </table>
+      </center>
+
 		</div>
 	</div>
 
@@ -230,12 +302,11 @@ function showLoading() {
         show('android-modal', true);
       }
     }
-
   }
 
   function noThanks() {
     // showLoading();
-    alert(document.cookie);
+    // alert(document.cookie);
 
     /*
     if (cookieDict['noInstall'] == null) {
