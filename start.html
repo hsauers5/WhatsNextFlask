@@ -77,15 +77,19 @@
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, null, options);
     } else { 
-      x.innerHTML = "Geolocation is not supported by this browser.";
+      alert("Please enable location and try again.");
     }
   }
 
   function showPosition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
+    if (lat == 0 && lon == 0) {
+	alert("Please enable location and try again.");
+    } else {
     // alert("Latitude: " + lat + " Longitude: " + lon);
-    redirect();
+    	redirect();
+    }
   }
   
   function redirect() {
