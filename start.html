@@ -254,14 +254,16 @@ function showLoading() {
     }
 	  
     if (document.cookie.includes("noInstall")) {
-	document.cookie = "noInstall1=" + (parseInt(cookieDict['noInstall'])+1) + ";";
+	document.cookie += "noInstall1=" + (parseInt(cookieDict['noInstall'])+1) + ";";
+    } else {
+
+        // set cookie to asked once - should opt out twice.
+        document.cookie = "noInstall=" + (parseInt(cookieDict['noInstall'])+1) + ";";
+    
     }
 
-    // set cookie to asked once - should opt out twice.
-    document.cookie = "noInstall=" + (parseInt(cookieDict['noInstall'])+1) + ";";
-    
     /* Max Date: 2038-01-19 00:00:00 */
-    document.cookie = "expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + ";";
+    document.cookie += "expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + ";";
     show("android-modal", false);
     show("ios-modal", false);
     
