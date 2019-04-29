@@ -153,7 +153,7 @@ function skip() {
 <!--
   Prod ID: 374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com
   -->
-<meta name="google-signin-client_id" content="374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="407821273709-8f030mnl2fdd6e92l2u8sk3qvbgj9m89.apps.googleusercontent.com">
 
 </head>
 
@@ -306,23 +306,27 @@ function showLoading() {
 
   function noThanks() {
     // showLoading();
-    // alert(document.cookie);
+    alert(document.cookie);
 
     /*
     if (cookieDict['noInstall'] == null) {
       cookieDict['noInstall'] = numNoInstalls;
     }
     */
+
 	  
     if (document.cookie.includes("noInstall")) {
-	document.cookie += " noInstall1=1" + encodeURIComponent(";");
+	    document.cookie = "noInstall1=1" + encodeURIComponent(";") + "noInstall=1" + encodeURIComponent(";");
     } else {
       // set cookie to asked once - should opt out twice.
       document.cookie = " noInstall=1" + encodeURIComponent(";");
+
+      // 
     }
     
     /* Max Date: 2038-01-19 00:00:00 */
-    document.cookie += " expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + encodeURIComponent(";");
+    document.cookie += "expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + encodeURIComponent(";");
+    alert(document.cookie);
     show("android-modal", false);
     show("ios-modal", false);
     
