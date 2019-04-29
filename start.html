@@ -235,35 +235,23 @@ function showLoading() {
 
   function noThanks() {
     // showLoading();
-    // alert(document.cookie);
-    
-    // read cookie
-    cookiearray = document.cookie.split(';');
-    numNoInstalls = 1;
+    alert(document.cookie);
 
-    var cookieDict = {};
-
-    for(var i=0; i<cookiearray.length; i++) {
-      key = cookiearray[i].split('=')[0];
-      value = cookiearray[i].split('=')[1];
-      cookieDict[key] = value;
-    }
-
+    /*
     if (cookieDict['noInstall'] == null) {
       cookieDict['noInstall'] = numNoInstalls;
     }
+    */
 	  
     if (document.cookie.includes("noInstall")) {
-	document.cookie += "noInstall1=" + (parseInt(cookieDict['noInstall'])+1) + ";";
+	document.cookie += " noInstall1=1" + encodeURIComponent(";");
     } else {
-
-        // set cookie to asked once - should opt out twice.
-        document.cookie = "noInstall=" + (parseInt(cookieDict['noInstall'])+1) + ";";
-    
+      // set cookie to asked once - should opt out twice.
+      document.cookie = " noInstall=1" + encodeURIComponent(";");
     }
-
+    
     /* Max Date: 2038-01-19 00:00:00 */
-    document.cookie += "expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + ";";
+    document.cookie += " expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + encodeURIComponent(";");
     show("android-modal", false);
     show("ios-modal", false);
     
