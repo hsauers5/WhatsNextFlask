@@ -52,7 +52,7 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
   # build html
   
   # create request url
-  api_url = "http://ec2-18-191-161-179.us-east-2.compute.amazonaws.com/find?"
+  api_url = "http://whatsnext.hsauers.net/find?"
   api_url += "location=" + location + "&category=" + category + "&radius=" + radius + "&money=" + price
 
   print(api_url)
@@ -92,7 +92,7 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
     temp_html = temp_html.replace("LOCATION", r['address'])
 
     temp_html = temp_html.replace("PHONE_NUMBER", r['phone'])
-    # temp_html = temp_html.replace("BIZ_ID", r['id'])
+    temp_html = temp_html.replace("BIZ_ID", r['id'])
 
     # append to all
     restaurants_html += temp_html
