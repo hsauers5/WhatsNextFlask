@@ -273,7 +273,7 @@ function showLoading() {
 <script>
   function install() {
     thisCookie = document.cookie;
-    if (! (thisCookie.includes("noInstall") && thisCookie.includes("noInstall1"))) {
+    if ( False && ! (thisCookie.includes("noInstall") && thisCookie.includes("noInstall1"))) {
       // if iphone, redirect to instructions
       if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
         show('ios-modal', true);
