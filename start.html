@@ -210,7 +210,7 @@ function showLoading() {
 
     thisCookie = document.cookie;
 
-    if (! thisCookie.includes("noInstall") || ! thisCookie.includes("noInstall1")) {
+    if (! thisCookie.includes("noInstall") && ! thisCookie.includes("noInstall1")) {
       // if iphone, redirect to instructions
       if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
         show('ios-modal', true);
