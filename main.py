@@ -72,6 +72,7 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
     return render_template('none.html')
 
   r = restaurants[0]
+  id_list = []
 
   restaurants_html = ""
 
@@ -93,6 +94,7 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
 
     temp_html = temp_html.replace("PHONE_NUMBER", r['phone'])
     temp_html = temp_html.replace("BIZ_ID", r['id'])
+    id_list.append(r['id'])
 
     # append to all
     restaurants_html += temp_html
@@ -106,8 +108,30 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
   with open('end_bottom.html', 'r') as content_file:
     bottom_html = content_file.read()
 
+  # log data
+  try:
+    with open('history.csv', 'a+') as historyfile:
+      if 'idtoken' in session:
+        # time, email, name, location, category, price, distance, restaurant_idlist
+        historyfile.write(str(time.time()) + ", " + session['email'] + ", " + session['name'] + ", " + location + ", " + category + ", " + price + ", " + radius + ", " + str(id_list) + "\n")
+      else:
+        historyfile.write(str(int(time.time())) + ", " + "IP: " + str(request.remote_addr) + ", " + "guest" + ", " + location + ", " + category + ", " + price + ", " + radius + ", " + str(id_list) + "\n")
+  except:
+    pass
+
   return top_html + restaurants_html + bottom_html
   
+
+@app.route('/oauth', methods=['POST', 'GET'])
+def oauth():
+  try:
+    session['email'] = request.form.get('email')
+    session['idtoken'] = request.form.get('idtoken')
+    session['name'] = request.form.get('name')
+    return "Signed in as " + session['name']
+  except:
+    return "Bad request."
+
   
 # start listening
 if __name__ == "__main__":
