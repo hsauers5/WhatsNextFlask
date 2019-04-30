@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, jsonify, redirect, u
 import requests
 import json
 import time
+from base64 import b64encode
 
 
 app = Flask(__name__, static_folder='.', static_url_path='', template_folder='')
@@ -136,6 +137,36 @@ def oauth():
 @app.route('/history.csv', methods=['GET'])
 def show_history():
   return "404 not found"
+
+
+# aHNhdWVyczpBZG1pbjE=
+@app.route('/data', methods=['GET'])
+def show_data():
+  user_hash = str.encode(request.args['auth'])
+  auth = ""
+  with open('admincreds.txt', 'r') as content_file:
+    auth = b64encode(str.encode(content_file.read()))
+    print(auth)
+  if user_hash != auth:
+    return "401 Unauthorized"
+  else:
+    table_html = ""
+    with open('history.csv', 'r') as content_file:
+      history = content_file.read()
+
+    # build table
+    table_html += "<table>"
+
+    rows = history.split("\n")
+    for row in rows:
+      table_html += "<tr>" + '\n'
+      columns = row.split(", ")
+      for column in columns:
+        table_html += "<td>" + column + "</td>" + '\n'
+      table_html += "</tr>" + '\n'
+    table_html += "</table>"
+  
+  return table_html
 
   
 # start listening
