@@ -273,36 +273,54 @@ function showLoading() {
 
 <script>
   function install() {
+
     thisCookie = document.cookie;
-    if ( False && ! (thisCookie.includes("noInstall") && thisCookie.includes("noInstall1"))) {
+
+    if (! (thisCookie.includes("noInstall") && thisCookie.includes("noInstall1"))) {
       // if iphone, redirect to instructions
       if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
         show('ios-modal', true);
       }
+
       // if android, redirect to instructions
       if (navigator.userAgent.match(/Android/i)) {
         show('android-modal', true);
       }
     }
   }
+
   function noThanks() {
     // showLoading();
-    // alert(document.cookie);
+
     /*
     if (cookieDict['noInstall'] == null) {
       cookieDict['noInstall'] = numNoInstalls;
     }
     */
+
 	  
     if (document.cookie.includes("noInstall")) {
-	document.cookie += " noInstall1=1" + encodeURIComponent(";");
+      var a = new Date();
+      a = new Date(a.getTime() +1000*60*60*24*365*15);
+      var str = 'noInstall1=1; noInstall=1;';
+      var str1 = 'expires=' + a.toGMTString()+';' 
+      document.cookie = str;
+      document.cookie = str1;
+      // "noInstall1=1; noInstall=1; expires=Fri, 1 Jan 2038 00:00:00 GMT;"
     } else {
       // set cookie to asked once - should opt out twice.
-      document.cookie = " noInstall=1" + encodeURIComponent(";");
+      var a = new Date();
+      a = new Date(a.getTime() +1000*60*60*24*365*15);
+      var str = 'noInstall=1;';
+      var str1 = 'expires=' + a.toGMTString()+';' 
+      document.cookie = str;
+      document.cookie = str1;
+
+      // 
     }
     
     /* Max Date: 2038-01-19 00:00:00 */
-    document.cookie += " expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + encodeURIComponent(";");
+    // document.cookie += "expires=" + "Fri, 1 Jan 2038 00:00:00 GMT;"
     show("android-modal", false);
     show("ios-modal", false);
     
