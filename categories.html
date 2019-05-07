@@ -45,6 +45,18 @@
 	.question {
 		font-style: oblique;
 	}
+  .searchbtn {
+    background-color: #42b0f4;
+    color: #FFFFFF;
+		border-color: #42b0f4;
+		font-family: Arial;
+		font-size: 14px;
+    padding: 6px;
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    margin: 0px
+  }
 </style>
 
 
@@ -60,6 +72,21 @@
         console.log(Http.responseText); window.location.href="prices.html";}, 500);
     }
   }
+
+  var searchBar = null;
+  window.onload=function(){
+  
+    searchBar = document.getElementById("category-search");
+    searchBar.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        search();
+      }
+    });
+  }
+
+  function search() {
+    nextPage(searchBar.value);
+  }
 </script>
 
 </head>
@@ -70,6 +97,9 @@
 	<div class="table">
 	<center>
 		<h1 class="question" style="color: #5e9ca0; text-align: center; padding-top: 20px;"><span style="color: #ffffff;">what are you feeling?</span></h1>
+    <center>
+      <h3 style="color: #ffffff; text-align: center; font-style: oblique;"><input type="text" id="category-search" name="category-search" placeholder="pizza, coffee, sandwiches" style="height: 33px;">  <button class="searchbtn" onclick="search()">search</button></h3>
+    </center>
 		<table>
 			<tr>
 			<td style="text-align:center; vertical-align:middle">
@@ -110,7 +140,7 @@
 			</td>
 			</tr>
 		</table>
-		<center>
+		</center>
 	</div>
 		
 	</div>
