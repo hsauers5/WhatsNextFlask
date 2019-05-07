@@ -139,7 +139,11 @@ def show_history():
   return "404 not found"
 
 
-# aHNhdWVyczpBZG1pbjE=
+@app.route('/admincreds.txt', methods=['GET'])
+def no_creds():
+  return "404 not found"
+
+
 @app.route('/data', methods=['GET'])
 def show_data():
   user_hash = str.encode(request.args['auth'])
