@@ -15,7 +15,6 @@
 		background-repeat: no-repeat;
 	}
 	.container {
-        height: 100%;
 		font-family: Arial;
 		background-repeat: no-repeat;
     }
@@ -36,10 +35,11 @@
 		top: 45%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+    max-height: 100%;
 	}
 	.categoryimg {
-		width: 180px;
-		height: 180px;
+		max-width: 180px;
+		max-height: 180px;
 	}
 	
 	.question {
@@ -69,7 +69,7 @@
 	<div id="main" class="container" style="">
 	<div class="table">
 	<center>
-		<h1 class="question" style="color: #5e9ca0; text-align: center; "><span style="color: #ffffff;">what are you feeling?</span></h1>
+		<h1 class="question" style="color: #5e9ca0; text-align: center; padding-top: 20px;"><span style="color: #ffffff;">what are you feeling?</span></h1>
 		<table>
 			<tr>
 			<td style="text-align:center; vertical-align:middle">
