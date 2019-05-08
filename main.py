@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, jsonify, redirect, url_for
+from flask_compress import Compress
 import requests
 import json
 import time
@@ -9,6 +10,12 @@ app = Flask(__name__, static_folder='.', static_url_path='', template_folder='')
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 
+
+COMPRESS_MIMETYPES = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript']
+COMPRESS_LEVEL = 10
+COMPRESS_MIN_SIZE = 500
+
+Compress(app)
 
 @app.route('/', methods=['GET'])
 def home():
@@ -144,6 +151,7 @@ def no_creds():
   return "404 not found"
 
 
+# aHNhdWVyczpBZG1pbjE=
 @app.route('/data', methods=['GET'])
 def show_data():
   user_hash = str.encode(request.args['auth'])
@@ -172,7 +180,7 @@ def show_data():
   
   return table_html
 
-  
+
 # start listening
 if __name__ == "__main__":
   app.run(debug=False, port='5000', host='0.0.0.0')
