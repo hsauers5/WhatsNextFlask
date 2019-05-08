@@ -1,0 +1,5 @@
+robots.txt
+User-agent: *
+Disallow: 
+Disallow: /img
+Sitemap: https://app.hsauers.net/sitemap.xml
