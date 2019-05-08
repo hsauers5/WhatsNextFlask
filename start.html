@@ -1,7 +1,16 @@
+
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="next" href="categories.html">
 <head>
+
+<title>
+  WhatsNext - Discover New Restaurants
+</title>
+
+<meta name="description" content="Take the guesswork out of going out - find the hottest open restaurants in your area with three clicks." />
+
+<link rel="canonical" href="https://app.hsauers.net" />
 
 <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 	
@@ -114,8 +123,7 @@ lE.rel="manifest",lE.href="app.json",document.head.insertBefore(lE, document.hea
 /* OAuth Script */
 function onSignIn(googleUser) {
   // hide auth, show start button
-  show('auth-table', false);
-  show('start-btn', true);
+  skip();
   var profile = googleUser.getBasicProfile();
   // id = profile.getId(); // Do not send to your backend! Use an ID token instead.
   idtoken = googleUser.getAuthResponse().id_token;
@@ -144,7 +152,7 @@ function skip() {
 <!--
   Prod ID: 374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com
   -->
-<meta name="google-signin-client_id" content="374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="141475774730-su19sf4n8s4og04ktn5idlmgrqch6fmm.apps.googleusercontent.com">
 
 </head>
 
