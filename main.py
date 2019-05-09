@@ -181,6 +181,11 @@ def show_data():
   return table_html
 
 
+@app.route('/.well-known/assetlinks.json', methods=['GET'])
+def asset_links():
+  return render_template('/.well-known/assetlinks.json')
+
+
 # start listening
 if __name__ == "__main__":
   app.run(debug=False, port='5000', host='0.0.0.0')
