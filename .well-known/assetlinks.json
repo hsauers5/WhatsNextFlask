@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "xyz.appmaker.pifdac",
-      "sha256_cert_fingerprints": ["33:F1:88:72:06:D6:C2:12:EB:0C:38:4C:BF:45:52:FA:D1:7D:A4:8B:1B:35:81:1E:2A:47:48:A8:15:8B:F0:1C"]
+      "sha256_cert_fingerprints": ["7B:CD:B2:E1:28:52:0F:35:FF:6E:D2:92:F4:B3:20:A6:73:67:1C:4B:C6:8C:F7:C8:9C:2A:01:CE:6A:2D:01:DE"]
     }
   }
 ]
