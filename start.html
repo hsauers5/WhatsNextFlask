@@ -317,11 +317,11 @@ function showLoading() {
     */
 	  
     if (document.cookie.includes("noInstall")) {
-      setCookie("noInstall1", "1", 365)
+      setCookie("noInstall1", "1", 365*10)
     } else {
       // set cookie to asked once - should opt out twice.
       
-      setCookie("noInstall", "1", 365)
+      setCookie("noInstall", "1", 365*10)
     }
     
     show("android-modal", false);
