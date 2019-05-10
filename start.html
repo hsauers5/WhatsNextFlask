@@ -1,4 +1,3 @@
-
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="next" href="categories.html">
@@ -146,13 +145,19 @@ function skip() {
   show('auth-table', false);
   show('start-btn', true);
 }
+
 </script>
+
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <!--
   Prod ID: 374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com
+
+  Dev ID:
+  141475774730-su19sf4n8s4og04ktn5idlmgrqch6fmm.apps.googleusercontent.com
   -->
-<meta name="google-signin-client_id" content="374998941431-pj5e9els46se88lbqa3q2mr31bjrtvve.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="141475774730-su19sf4n8s4og04ktn5idlmgrqch6fmm.apps.googleusercontent.com">
+
 
 </head>
 
@@ -282,7 +287,7 @@ function showLoading() {
 <script>
     function install() {
     thisCookie = document.cookie;
-    if ( false && ! (thisCookie.includes("noInstall") && thisCookie.includes("noInstall1"))) {
+    if ( true && ! (thisCookie.includes("noInstall") && thisCookie.includes("noInstall1"))) {
       // if iphone, redirect to instructions
       if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
         show('ios-modal', true);
@@ -293,6 +298,15 @@ function showLoading() {
       }
     }
   }
+
+
+  function setCookie(c_name,value,exdays) {
+      var exdate=new Date();
+      exdate.setDate(exdate.getDate() + exdays);
+      var c_value=escape(value) + ("; expires="+exdate.toUTCString());
+      document.cookie=c_name + "=" + c_value;
+  }
+
   function noThanks() {
     // showLoading();
     // alert(document.cookie);
@@ -303,14 +317,13 @@ function showLoading() {
     */
 	  
     if (document.cookie.includes("noInstall")) {
-	document.cookie = " noInstall1=1" + encodeURIComponent(";");
+      setCookie("noInstall1", "1", 365)
     } else {
       // set cookie to asked once - should opt out twice.
-      document.cookie = " noInstall=1" + encodeURIComponent(";");
+      
+      setCookie("noInstall", "1", 365)
     }
     
-    /* Max Date: 2038-01-19 00:00:00 */
-    document.cookie = " expires=" + "Fri, 1 Jan 2038 00:00:00 GMT" + encodeURIComponent(";");
     show("android-modal", false);
     show("ios-modal", false);
     
