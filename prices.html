@@ -44,6 +44,19 @@
 	.question {
 		font-style: oblique;
 	}
+  .skip-button {
+		background-color: #42b0f4;
+    color: #FFFFFF;
+		border-color: #42b0f4;
+		font-family: Arial;
+		font-size: 18px;
+    padding: 8px;
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    margin: 0px;
+    min-width: 80px;
+	}
 </style>
 	
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -77,7 +90,7 @@ Http.onreadystatechange=(e)=>{
 	<div id="main" class="container" style="">
 	<div class="table">
 	<center>
-		<h1 class="question" style="color: #5e9ca0; text-align: center; "><span style="color: #ffffff;">name your price.</span></h1>
+		<h1 class="question" style="color: #5e9ca0; text-align: center; "><span style="color: #ffffff;">name your max price.</span></h1>
 		<table>
 			<tr>
 			<td style="text-align:center; vertical-align:middle">
@@ -106,6 +119,12 @@ Http.onreadystatechange=(e)=>{
 			</tr>
 		</table>
 		<center>
+
+      <p>
+
+      <center>
+        <button class="skip-button" onclick='nextPage("4");'> skip </button>
+      </center>
 	</div>
 		
 	</div>
