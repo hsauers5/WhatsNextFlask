@@ -69,14 +69,14 @@ def get_restaurants(location="32816", category="asian", radius="15", price="4"):
 
   # ensures slow responses don't break the app
   count = 0
-  while count < 30:
+  while count < 15:
     try:
       restaurants = json.loads(resp)
       break
     except:
       time.sleep(0.25)
       count += 1
-  if count >= 30:
+  if count >= 15:
     return render_template('none.html')
 
   r = restaurants[0]
@@ -139,6 +139,23 @@ def oauth():
     return "Signed in as " + session['name']
   except:
     return "Bad request."
+
+
+@app.route('/expand', methods=['GET'])
+def expand_search():
+  # expand radius
+  if session['distance'] == '1':
+    session['distance'] = '5'
+  elif session['distance'] == '5':
+    session['distance'] = '10'
+  elif session['distance'] == '10':
+    session['distance'] = '15'
+  else:
+    session['distance'] = str(int(session['distance'])+10)
+
+  # new search with radius
+  return restaurants()
+  pass
 
 
 @app.route('/history.csv', methods=['GET'])
