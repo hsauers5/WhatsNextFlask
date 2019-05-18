@@ -42,11 +42,16 @@
 		top: 45%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+    width: 75%;
 	}
 </style>
 
 <script>
   function redirect() {
+    window.location.href="expand";
+  }
+
+  function newsearch() {
     window.location.href="categories.html";
   }
 </script>
@@ -56,9 +61,13 @@
 <body>
 	<div id="main" class="container" style="">
 	<div class="intro">
-			<h1 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">No matches were found. We're sorry!</span></h1>
+			<h2 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">No matches for your search were found. <p> However, you can expand your search radius or try another category: </span></h2>
 			<p style="text-align: center;">
-				<button class="start-button" onclick='redirect();'> Search Again </button>
+				<button class="start-button" onclick='redirect();'> Expand Radius </button>
+        </p>
+
+			<p style="text-align: center;">
+        <button class="start-button" onclick='newsearch();'> New Search </button>
 			</p>
 		</div>
 
