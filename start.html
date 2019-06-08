@@ -116,6 +116,11 @@ if (window.location.hostname != "whatsnext-app.hsauers.net") {
   };
   function getLocation() {
     showLoading();
+    getLocationController();
+    getLocationController();
+    getLocationController();
+  }
+  function getLocationController() {
     if (navigator.geolocation) {
       show('location-modal', false);
       navigator.geolocation.getCurrentPosition(showPosition, null, options);
