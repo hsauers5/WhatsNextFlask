@@ -76,6 +76,18 @@ if (window.location.hostname != "whatsnext-app.hsauers.net") {
     -webkit-border-radius: 0px;
     margin: 0px
 	}
+  .searchbtn {
+    background-color: #42b0f4;
+    color: #FFFFFF;
+		border-color: #42b0f4;
+		font-family: Arial;
+		font-size: 14px;
+    padding: 6px;
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    margin: 0px
+  }
 	.intro {
 		position: absolute;
 		top: 45%;
@@ -103,7 +115,9 @@ if (window.location.hostname != "whatsnext-app.hsauers.net") {
     maximumAge: 0
   };
   function getLocation() {
+    showLoading();
     if (navigator.geolocation) {
+      show('location-modal', false);
       navigator.geolocation.getCurrentPosition(showPosition, null, options);
     } else { 
       alert("Please enable your location services.");
@@ -203,7 +217,7 @@ function skip() {
       <h3 style="color: #5e9ca0; text-align: center; font-style: oblique;"><span style="color: #ffffff;">discover only the best, highest-rated restaurants with exactly what you're hungry for</span></h3>
 
 			<p style="text-align: center; display: none;" id="start-btn">
-				<button class="start-button" onclick='getLocation();'> Get Started </button>
+				<button class="start-button" onclick='pickLocation();'> Get Started </button>
 			</p>
 
       <center>
@@ -216,7 +230,7 @@ function skip() {
           </td>
           <td>
             <center>
-              <button class="skip-button" onclick='getLocation();'> Just Show Me </button>
+              <button class="skip-button" onclick='pickLocation();'> Just Show Me </button>
             </center>
           </td>
         </tr>
@@ -282,6 +296,17 @@ function showLoading() {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.95);
+    background-image: url('https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/img/mainbackground.jpg')
+}
+#location-modal {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.98);
     background-image: url('https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/img/mainbackground.jpg')
 }
 .modal-dialog {
@@ -415,6 +440,84 @@ function showLoading() {
       </div>
       <div class="modal-footer">
 	  <button class="button-back" onclick="noThanks()"> No Thanks </button>
+      </div>
+	  </center>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function pickLocation() {
+  show('location-modal', true);
+}
+// pickLocation();
+
+function pickNewLocation() {
+  show('current-button', false);
+  show('another-button', false);
+  show('zipcode-search', true)
+}
+
+function searchLocation() {
+  var myLocationChoice = document.getElementById("category-search").value;
+  if (myLocationChoice != "" && myLocationChoice != null) {
+    searchWithLocation(myLocationChoice);
+  }
+}
+
+function searchWithLocation(choice) {
+    showLoading();
+    show('location-modal', false);
+    const Http = new XMLHttpRequest();
+    const url="categories?location=" + choice;
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+      setTimeout(function(){
+        console.log(Http.responseText); window.location.href="categories.html";}, 500);
+    }
+  }
+
+var searchBar = null;
+  window.onload=function(){
+    searchBar = document.getElementById("category-search");
+    searchBar.value = null;
+    searchBar.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        searchLocation();
+      }
+    });
+  }
+
+</script>
+
+<div id="location-modal">
+  <div class="modal-fade" id="install-modal" tabindex="-1" role="dialog" aria-labelledby="install-modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		
+		<center>
+		<h1 class="modal-title" id="install-modalLabel" style="color: #ffffff; font-size: 36; font-family: Arial;">Where To?</h1>
+		</center>
+      </div>
+	  <center>
+      <div class="modal-body">
+        <img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/images/icons/icon-144x144.png" />
+<p>
+<!-- <img src="https://raw.githubusercontent.com/hsauers5/WhatsNextFlask/master/add.png" height=130px, width=600px /> -->
+
+      </div>
+      <div class="modal-footer">
+	  	  <button id="current-button" class="start-button" onclick="getLocation()"> Current Location </button>
+    <button id="another-button" class="start-button" onclick="pickNewLocation()"> Choose Another </button>
+    <div id="zipcode-search" style="display: none;">
+    <center>
+      <h3 style="color: #ffffff; text-align: center; font-style: oblique;"><input type="text" id="category-search" name="category-search" placeholder="San Francisco, 32816, Downtown Tampa" style="height: 33px;">  <button class="searchbtn" onclick="searchLocation()">search</button></h3>
+    </center>
+    </div>
       </div>
 	  </center>
     </div>
