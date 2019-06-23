@@ -3,16 +3,13 @@ from flask_compress import Compress
 import requests
 import json
 import time
-import sys
 from base64 import b64encode
 
-DEV = True
-if len(sys.argv) > 1:
-  DEV = bool(sys.argv[1])
- 
+
 app = Flask(__name__, static_folder='.', static_url_path='', template_folder='')
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
+
 
 COMPRESS_MIMETYPES = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript']
 COMPRESS_LEVEL = 10
@@ -56,15 +53,12 @@ def restaurants():
   except:
     return "<script>window.location.href='start.html';</script>"
 
-def get_dev_results():
-  return requests.get("https://app.whatsnext.fyi/test").content
 
 # generate restaurants list from api
 @app.route('/test', methods=['GET'])
 def get_restaurants(location="32816", category="asian", radius="15", price="4"):
-  if DEV:
-    return get_dev_results()
-
+  # build html
+  
   # create request url
   api_url = "http://localhost:80/find?"
   api_url += "location=" + location + "&category=" + category + "&radius=" + radius + "&money=" + price
@@ -174,7 +168,6 @@ def no_creds():
   return "404 not found"
 
 
-# aHNhdWVyczpBZG1pbjE=
 @app.route('/data', methods=['GET'])
 def show_data():
   user_hash = str.encode(request.args['auth'])
