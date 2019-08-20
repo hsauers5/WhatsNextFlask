@@ -114,11 +114,23 @@ if (window.location.hostname != "whatsnext-app.hsauers.net") {
     timeout: 5000,
     maximumAge: 0
   };
+
   function getLocation() {
+    show('location-modal', false);
     showLoading();
-    getLocationController();
-    getLocationController();
-    getLocationController();
+    // ensure user doesn't deny location
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log("fetching location");
+      showPosition(position);
+      // getLocationController();
+      // getLocationController();
+    },
+    function(error) {
+      if (error.code == error.PERMISSION_DENIED) {
+        alert("Please allow WhatsNext to use your location.");
+        document.location.href="/";
+      }
+    });
   }
   function getLocationController() {
     if (navigator.geolocation) {
